@@ -1,3 +1,4 @@
+use std::fmt;
 pub enum TokenType {
     //one or two character token
     EQUAL,
@@ -15,6 +16,20 @@ pub enum TokenType {
 
     //eof
     EOF,
+}
+
+impl fmt::Display for TokenType {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            TokenType::EQUAL => write!(f, "="),
+            TokenType::VAR => write!(f, "var"),
+            TokenType::IDENTIFIER => write!(f, "identifier"),
+            TokenType::STRING => write!(f, "string"),
+            TokenType::NUMBER => write!(f, "number"),
+            TokenType::SEMICOLON => write!(f, ";"),
+            TokenType::EOF => write!(f, "EOF"),
+        }
+    }
 }
 
 pub struct Token {
