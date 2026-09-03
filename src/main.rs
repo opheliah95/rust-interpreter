@@ -2,8 +2,8 @@
 use std::env;
 use std::fs;
 mod utils;
-use utils::token;
-
+use utils::scanner::{Scanner};
+use utils::token::{Token};
 fn main() {
     let args: Vec<String> = env::args().collect();
     if args.len() < 3 {
@@ -26,7 +26,10 @@ fn main() {
 
             // TODO: Uncomment the code below to pass the first stage
             if !file_contents.is_empty() {
-                panic!("Scanner not implemented");
+                for line in file_contents.lines() {
+                    run(line);
+                }
+               // println!("-> EOF  null");
             } else {
                 println!("EOF  null"); // Placeholder, replace this line when implementing the scanner
             }
@@ -35,4 +38,17 @@ fn main() {
             eprintln!("Unknown command: {}", command);
         }
     }
+
+    
+}
+
+
+fn run (source: &str) {
+    let mut scanner:Scanner = Scanner::new(source.to_string());
+    let tokens: Vec<Token> = scanner.scan_tokens();
+    //println!("total tokens {}", tokens.len());
+    for token in tokens {
+        println!("{}", token.to_string());
+    }
+
 }

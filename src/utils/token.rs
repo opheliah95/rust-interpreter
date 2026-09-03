@@ -1,4 +1,5 @@
 use std::fmt;
+#[derive(Clone, Copy, Debug)]
 pub enum TokenType {
     //one or two character token
     EQUAL,
@@ -12,26 +13,29 @@ pub enum TokenType {
     NUMBER,
 
     //single char token
-    SEMICOLON,
+    SEMICOLON,LEFT_PAREN, RIGHT_PAREN,
 
     //eof
     EOF,
 }
 
-impl fmt::Display for TokenType {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        match self {
-            TokenType::EQUAL => write!(f, "="),
-            TokenType::VAR => write!(f, "var"),
-            TokenType::IDENTIFIER => write!(f, "identifier"),
-            TokenType::STRING => write!(f, "string"),
-            TokenType::NUMBER => write!(f, "number"),
-            TokenType::SEMICOLON => write!(f, ";"),
-            TokenType::EOF => write!(f, "EOF"),
-        }
-    }
-}
+// impl fmt::Display for TokenType {
+//     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+//         match self {
+//             TokenType::EQUAL => write!(f, "="),
+//             TokenType::VAR => write!(f, "var"),
+//             TokenType::IDENTIFIER => write!(f, "identifier"),
+//             TokenType::STRING => write!(f, "string"),
+//             TokenType::NUMBER => write!(f, "number"),
+//             TokenType::SEMICOLON => write!(f, ";"),
+//             TokenType::EOF => write!(f, "EOF"),
+//             TokenType::LEFT_PAREN => write!(f, "("),
+//             TokenType::RIGHT_PAREN => write!(f, ")")
+//         }
+//     }
+// }
 
+#[derive(Clone)]
 pub struct Token {
     pub token_type: TokenType,
     pub lexeme: String,
@@ -50,9 +54,9 @@ impl Token {
     }
     pub fn to_string(&self) -> String {
         let output = format!(
-            "type: {} lexeme: {} literal {}",
+            "{:?} {} {}",
             self.token_type, self.lexeme, self.literal
         );
-        return self.to_string();
+        return output;
     }
 }

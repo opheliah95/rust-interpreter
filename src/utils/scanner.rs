@@ -20,14 +20,49 @@ impl Scanner {
     }
 
     pub fn is_at_end(&self) -> bool {
+        println!(
+            "current {} vs source: {} len: {}",
+            self.current,
+            self.source,
+            self.source.len()
+        );
         return self.current >= self.source.len();
     }
 
-    pub fn scan_token(&mut self) -> Vec<Token> {
+    fn add_token(&mut self, token_type: TokenType) {
+        let txt = self.source.get(self.start..self.current).unwrap();
+        let new_token = Token {
+            token_type: token_type,
+            lexeme: txt.to_string(),
+            literal: "null".to_string(),
+            line: 1,
+        };
+
+        self.tokens.push(new_token);
+    }
+
+    fn advance(&mut self) -> char {
+        let source_cloned = self.source.clone();
+        let char_found =  source_cloned.chars().nth(self.current).unwrap();
+        self.current += 1;
+        return char_found;
+    }
+
+    pub fn scan_token(&mut self) {
+        let c: char = self.advance();
+        match (c) {
+            '(' => {
+                self.add_token(TokenType::LEFT_PAREN);
+            }
+            ')' => self.add_token(TokenType::RIGHT_PAREN),
+            _ => {}
+        }
+    }
+
+    pub fn scan_tokens(&mut self) -> Vec<Token> {
         while !self.is_at_end() {
             self.start = self.current;
-            self.scan_token();
-        }
+            self.scan_token();        }
 
         self.tokens.push(Token {
             token_type: TokenType::EOF,
@@ -36,6 +71,6 @@ impl Scanner {
             line: 1,
         });
 
-        todo!()
+        return self.tokens.clone();
     }
 }
