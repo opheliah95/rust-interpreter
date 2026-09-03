@@ -58,6 +58,8 @@ impl Scanner {
             '*' => self.add_token(TokenType::STAR),
             ',' => self.add_token(TokenType::COMMA),
             '.' => self.add_token(TokenType::DOT),
+            '-' => self.add_token(TokenType::MINUS),
+            '+' => self.add_token(TokenType::PLUS),
 
             _ => {}
         }

@@ -13,9 +13,16 @@ pub enum TokenType {
     NUMBER,
 
     //single char token
-    SEMICOLON,LEFT_PAREN, RIGHT_PAREN,
-    LEFT_BRACE, RIGHT_BRACE,STAR,
-    COMMA, DOT, PLUS,
+    SEMICOLON,
+    LEFT_PAREN,
+    RIGHT_PAREN,
+    LEFT_BRACE,
+    RIGHT_BRACE,
+    STAR,
+    COMMA,
+    DOT,
+    PLUS,
+    MINUS,
 
     //eof
     EOF,
@@ -55,10 +62,7 @@ impl Token {
         };
     }
     pub fn to_string(&self) -> String {
-        let output = format!(
-            "{:?} {} {}",
-            self.token_type, self.lexeme, self.literal
-        );
+        let output = format!("{:?} {} {}", self.token_type, self.lexeme, self.literal);
         return output;
     }
 }
