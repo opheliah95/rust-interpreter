@@ -20,12 +20,12 @@ impl Scanner {
     }
 
     pub fn is_at_end(&self) -> bool {
-        println!(
-            "current {} vs source: {} len: {}",
-            self.current,
-            self.source,
-            self.source.len()
-        );
+        // println!(
+        //     "current {} vs source: {} len: {}",
+        //     self.current,
+        //     self.source,
+        //     self.source.len()
+        // );
         return self.current >= self.source.len();
     }
 
