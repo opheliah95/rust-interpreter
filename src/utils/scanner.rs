@@ -43,7 +43,7 @@ impl Scanner {
 
     fn advance(&mut self) -> char {
         let source_cloned = self.source.clone();
-        let char_found =  source_cloned.chars().nth(self.current).unwrap();
+        let char_found = source_cloned.chars().nth(self.current).unwrap();
         self.current += 1;
         return char_found;
     }
@@ -55,6 +55,10 @@ impl Scanner {
             ')' => self.add_token(TokenType::RIGHT_PAREN),
             '{' => self.add_token(TokenType::LEFT_BRACE),
             '}' => self.add_token(TokenType::RIGHT_BRACE),
+            '*' => self.add_token(TokenType::STAR),
+            ',' => self.add_token(TokenType::COMMA),
+            '.' => self.add_token(TokenType::DOT),
+
             _ => {}
         }
     }
@@ -62,7 +66,8 @@ impl Scanner {
     pub fn scan_tokens(&mut self) -> Vec<Token> {
         while !self.is_at_end() {
             self.start = self.current;
-            self.scan_token();        }
+            self.scan_token();
+        }
 
         self.tokens.push(Token {
             token_type: TokenType::EOF,
