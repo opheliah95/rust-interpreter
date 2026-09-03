@@ -67,7 +67,7 @@ impl Scanner {
         self.tokens.push(Token {
             token_type: TokenType::EOF,
             lexeme: "".to_string(),
-            literal: "".to_string(),
+            literal: "null".to_string(),
             line: 1,
         });
 
