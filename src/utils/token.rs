@@ -14,6 +14,7 @@ pub enum TokenType {
 
     //single char token
     SEMICOLON,LEFT_PAREN, RIGHT_PAREN,
+    LEFT_BRACE, RIGHT_BRACE,
 
     //eof
     EOF,

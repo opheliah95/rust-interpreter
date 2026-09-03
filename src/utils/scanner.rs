@@ -51,10 +51,10 @@ impl Scanner {
     pub fn scan_token(&mut self) {
         let c: char = self.advance();
         match (c) {
-            '(' => {
-                self.add_token(TokenType::LEFT_PAREN);
-            }
+            '(' => self.add_token(TokenType::LEFT_PAREN),
             ')' => self.add_token(TokenType::RIGHT_PAREN),
+            '{' => self.add_token(TokenType::LEFT_BRACE),
+            '}' => self.add_token(TokenType::RIGHT_BRACE),
             _ => {}
         }
     }
